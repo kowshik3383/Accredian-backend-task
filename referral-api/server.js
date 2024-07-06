@@ -10,7 +10,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb+srv://kowshikvalipireddy:fEk9Qp42Rf4Uxqpn@cluster0.rawcqaj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+mongoose.connect('mongodb+srv://kowshikvalipireddy:fEk9Qp42Rf4Uxqpn@cluster0.rawcqaj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0',{   bufferCommands: false, // Disable command buffering
+    bufferMaxEntries: 0,   // Disable command buffering
+    serverSelectionTimeoutMS: 5000, // Timeout for server selection
+    socketTimeoutMS: 45000, // Timeout for socket connection})
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log('MongoDB connection error: ', err));
 
